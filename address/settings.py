@@ -82,10 +82,14 @@ WSGI_APPLICATION = 'address.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
     }
 }
+
+DATABASES['default'] = dj_database_url.config(default='postgres://yxliyjtigyqpdn:b1cb1c967742f8c474bf46d6abed8619ea80aa85cccc1f7072b6cf6986f5cfd6@ec2-3-218-71-191.compute-1.amazonaws.com:5432/d7ovucjjiplr25')
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
