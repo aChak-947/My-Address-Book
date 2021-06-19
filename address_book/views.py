@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from .models import Address
 
 # Create your views here.
 
 def home(request):
-	return render(request, 'home.html', {})
+	all_addresses = Address.objects.all
+	return render(request, 'home.html', {'all_addresses': all_addresses})
 
 
 def add_address(request):
